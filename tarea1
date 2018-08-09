@@ -1,0 +1,142 @@
+#include <stdio.h>
+#include <time.h>
+#include <conio.h>
+#include <stdlib.h>
+int INITIAL_MENU(int opcion);
+
+int main()
+{
+    int i, n=0, n2=0;
+    int score=0;
+    int totalscore=0;
+    int opcion;
+    
+    int N=INITIAL_MENU(opcion);
+
+   if (N==1)
+    {
+        srand( time( NULL ) );
+        printf (" S I M U L A D O R  D E  B O L O S\n\n  >Presiona ENTER para tirar\n");
+        printf ("\t'X' -> STRIKE!\n\t'/' -> SPARE\n\t'-' -> TIRO NULO\n");
+        
+        getch();
+        for (i = 1; i <= 10; i++)
+        {
+            getch();
+            if (i!=10)
+            {
+                printf ("\n       %d  |",i);
+            }
+            else
+            {
+                printf ("\n      %d  |",i);  
+            }
+            getch();
+		    n = 0 + rand () % 11;
+		
+		    if (n==10)
+		    {
+		        printf (" X |");
+	            score = 20;
+	            getch();
+	            n2 = 0 + rand () % 11;
+		        
+	            if (n2==10)
+	                {
+	                    printf (" X |");
+	            	    score += 10;
+                	}
+            		else
+            		{
+            		    if(n2==0)
+            		    {
+            		        printf (" - |");
+            		    }
+            		    else
+            		    {
+            		        printf (" %d |", n2);
+        	                score += n2;
+            		    }
+                	 }
+		    }
+		    else
+		    {
+		        if (n<10)
+		        {
+		            if(n==0)
+		            {
+		                printf (" - |");
+		            }
+		            else
+		            {
+		                printf (" %d |", n);
+		            }
+		            getch();
+		            n2 = 0 + rand () % (11-n);
+		            score = n + n2;
+		            
+		            if (n2>0)
+	                {
+			            if (n2==(10-n))
+                        {
+                            printf(" / |");
+	                    }
+	                    else
+	                    {
+	                        printf(" %d |",n2);
+	                    }
+	                }
+	            
+	                if (n2==0)
+		            {
+		                printf (" - |");
+		            }
+                }
+            }
+            
+            totalscore += score; 
+            printf ("  %d", totalscore);
+        }
+        
+        getch();
+        printf ("\n\n\tTu puntaje total es: %d\n\t\t\t", totalscore);
+        
+        if (totalscore<=100)
+            printf("Muy bien!");
+            
+        if (totalscore>100 && totalscore<=200)
+            printf("Genial!");
+            
+        if (totalscore>200 && totalscore<300)
+            printf("INCREIBLE!");
+            
+        if (totalscore==300)
+            printf("No te creo XD\n\t\t\tLe moviste a los valores! >:C");
+            
+        printf("\n\n\tPresiona ENTER para salir");
+        
+        getch();
+        printf("\n\n\t ¡Gracias por jugar!:)\n\t     Vuelve pronto");
+    }
+    else
+    {
+        printf("\n\t ¡Vuelve pronto!:)\n");
+        return 0;
+    }
+   
+   return 0;
+}
+
+int INITIAL_MENU(int opcion)
+{
+   do
+   {
+        printf (" S I M U L A D O R  D E  B O L O S\n\n\n");
+        printf ("\t    1: JUGAR\n\t    2: SALIR\n");
+        printf ("\tEscoge una opcion\n");
+        scanf ("%d",&opcion);
+        system("clear");
+   }
+   while(opcion!=1 && opcion!=2);
+   return opcion;
+}
